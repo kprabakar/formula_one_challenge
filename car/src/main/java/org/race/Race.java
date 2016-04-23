@@ -43,16 +43,21 @@ public class Race {
       Iterator<Car> iterator = carsInRace.iterator();
       Car iCar = null;
 
-      //parallel stream
-      Set<Car> exitedCars = new HashSet<>();
+      //TODO - do this using parallel stream
+      /*Set<Car> exitedCars = new HashSet<>();
       carsInRace.parallelStream().forEach(c -> {
         try {
           c.race(2);
         } catch (NotInRaceException e) {
-          e.printStackTrace();
+          exitedCars.add(c);
+        }
+        if(c.getDistanceLeft() <= 0) {
+          exitedCars.add(c);
         }
       });
-      while (iterator.hasNext()) { //TODO - do this using parallel stream
+      carsInRace.removeAll(exitedCars);*/
+
+      while (iterator.hasNext()) {
         iCar = iterator.next();
         try {
           iCar.race(2); //race for 2 seconds every time
